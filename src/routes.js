@@ -7,7 +7,7 @@ import StocksComponent from './components/stocks/StocksComponent.vue';
 // 8. nakon importa definisacemo i eksportujemo nase rute - idemo u main.js da ih registrujemo
 
 export const routes = [
-  { path: '', component: HomeComponent, name: 'Home' },
+  { path: '/', component: HomeComponent, name: 'Home' },
   { path: '/portfolio', component: PortfoliosComponent },
   { path: '/stocks', component: StocksComponent },
   { path: '*', redirect: {name: 'Home'}}
