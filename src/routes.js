@@ -8,7 +8,7 @@ import StocksComponent from './components/stocks/StocksComponent.vue';
 
 export const routes = [
   { path: '/', component: HomeComponent, name: 'Home' },
-  { path: '/portfolio', component: PortfoliosComponent },
-  { path: '/stocks', component: StocksComponent },
+  { path: '/portfolio', component: PortfoliosComponent, name: 'Portfolio'},
+  { path: '/stocks', component: StocksComponent, name: 'Stocks' },
   { path: '*', redirect: {name: 'Home'}}
 ]
