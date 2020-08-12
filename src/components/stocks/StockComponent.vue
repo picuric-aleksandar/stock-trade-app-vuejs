@@ -8,10 +8,17 @@
       </div>
       <div class="panel-body">
         <div class="pull-left">
-          <input type="text" name="quantity" placeholder="Quantity" class="form-control">
+          <input 
+            type="number" 
+            placeholder="Quantity" 
+            class="form-control"
+            v-model="quantity">
         </div>
         <div class="pull-right">
-          <div class="btn btn-success">
+          <div 
+            class="btn btn-success"
+            @click="buyStock"
+            :disabled = "quantity <= 0 || !Number.isInteger(Number(quantity))"> <!--ako je tip inputa number dovoljno je !Number.isInteger(quantity)-->
             Buy
           </div>
         </div>
@@ -22,7 +29,33 @@
 
 <script>
 export default {
-  props: ['stock']
+  props: ['stock'],
+  data(){
+    return {
+      quantity: 0,
+    }
+  },
+  watch: {
+    quantity(){
+      console.log(this.quantity)
+    }
+  },
+  methods: {
+    buyStock(){
+      if(this.quantity <= 0){
+        //umesto alerta,jednostavno cemo disable-ovati dugme
+        return alert('Quantity must be greater than 0 if you want to buy this stock!')
+      }
+      //kupovina deonice ce biti nas order stoga cemo kreirati konstantu koja to predstavlja
+      const stockOrder  = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        stockQuantity: this.quantity
+      }
+      console.log(stockOrder);
+      this.quantity = 0;
+    }
+  }
 }
 </script>
 
