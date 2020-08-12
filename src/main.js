@@ -5,6 +5,10 @@ import App from './App.vue'
 import VueRouter from '../node_modules/vue-router';
 import {routes} from './routes'
 
+//definisanje i import vue-resource
+import VueResource from '../node_modules/vue-resource'
+Vue.use(VueResource);
+Vue.http.options.root = 'https://stock-trade-app-vuejs-a946b.firebaseio.com/'
 // 3. iskoristiti instancu naseg routera
 Vue.use(VueRouter);
 

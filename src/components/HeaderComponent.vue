@@ -14,8 +14,11 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <router-link to="/portfolio" tag="li" active-class="active"><a>Portfolio</a></router-link>
-        <router-link to="/stocks" tag="li" active-class="active"><a>Stocks</a></router-link>
+        <!-- dodajem query param kako bih eventualno na osnovu njega mogao da ucitam odredjeni templejt za pojedinacni stock (
+          da li je Buy ili je Sell
+        ) -->
+        <router-link :to="{name: 'Portfolio', query: {view: 'portfolio'}}" tag="li" active-class="active"><a>Portfolio</a></router-link>
+        <router-link :to="{name: 'Stocks', query: {view: 'stocks'}}" tag="li" active-class="active"><a>Stocks</a></router-link>
       </ul>
       <span class="navbar-text navbar-right">
         Funds: 0
