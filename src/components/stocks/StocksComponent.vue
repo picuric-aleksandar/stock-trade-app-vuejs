@@ -20,11 +20,14 @@ import {mapGetters} from 'vuex';
     },
     methods: {
       ...mapActions({
+        // na ovaj nacin automatski kreiramo metod prop pod nazivom setStocks i akcijom govorimo nasim mutacijama u StockModule sta da rade
+        //mapActions u pozadini radi sledece, kreira metod setStocks(){this.$store.dispatch('setStocks', response)}
         setStocks: 'setStocks'
       })
     },
     computed: {
       ...mapGetters({
+         // na ovaj nacin automatski kreiramo computed prop pod nazivom stocks i preko getter-a vracamo vrednost iz store-a (odnosno StockModule-a)
          stocks: 'stocks'
       })
     },
@@ -33,8 +36,10 @@ import {mapGetters} from 'vuex';
     },
     created(){
       //postavljamo nas resource sa podacima sa firebase
-      this.resources = this.$resource('stockData.json',{});
-      this.resources.get({})
+      this.resources = this.$resource('stockData.json',{}); 
+      //ovde je samo stockData.json jer smo u main.js definisali -> Vue.http.options.root = 'https://stock-trade-app-vuejs-a946b.firebaseio.com/'
+      this.resources.get({}) //get() ima samo jedan argument a to je putanja koju gadja, a kako smo definisali root globalno i u liniji iznad
+      //definisali sta gadjamo zato je prazan {} u .get()
         .then(
           (response) => {
             console.log(response);
@@ -45,7 +50,7 @@ import {mapGetters} from 'vuex';
           (response) => {
             console.log(response);
             //this.stocks.push(...response);
-            this.setStocks(response);
+            this.setStocks(response); //ovo je ustvari setStocks(){this.$store.dispatch('setStocks', response)}
           }
         )
     }

@@ -26,6 +26,11 @@ const getters = {
     console.log(state.stocks)
     return state.stocks.slice();
   }
+  /**stocks getter mozemo napisati i kao:
+   * stocks: state => {
+   *  return ...
+   * }
+   */
 }
 
 export default {
