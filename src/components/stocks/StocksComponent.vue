@@ -9,6 +9,9 @@
 
 <script>
 import StockComponent from './StockComponent.vue';
+//Types 3. ovde sada importujemo sve iz types.js kako bi mogli da
+//koristimo imena
+import * as types from '../../store/types';
 import {mapActions} from 'vuex';
 import {mapGetters} from 'vuex';
   export default {
@@ -22,13 +25,13 @@ import {mapGetters} from 'vuex';
       ...mapActions({
         // na ovaj nacin automatski kreiramo metod prop pod nazivom setStocks i akcijom govorimo nasim mutacijama u StockModule sta da rade
         //mapActions u pozadini radi sledece, kreira metod setStocks(){this.$store.dispatch('setStocks', response)}
-        setStocks: 'setStocks'
+        setStocks: types.SET_STOCKS
       })
     },
     computed: {
       ...mapGetters({
          // na ovaj nacin automatski kreiramo computed prop pod nazivom stocks i preko getter-a vracamo vrednost iz store-a (odnosno StockModule-a)
-         stocks: 'stocks'
+         stocks: types.RETURN_STOCKS
       })
     },
     components: {

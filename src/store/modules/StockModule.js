@@ -1,13 +1,20 @@
+//Types 2. ovde sada importujemo sve iz types.js kako bi mogli da
+//koristimo imena
+
+import * as types from '../types';
+
 const state = {
   stocks: []
 }
-
+//mutacije menjaju state
 const mutations = {
+  //ova mutacija menaj state tako sto ucitava stocks
   'SET_STOCKS': (state, payload) => {
     // state.stocks.push(...payload);
     state.stocks = payload;
     console.log(state.stocks.length);
   },
+  //ova menja takos to na kraju dana menja cenu deonice na berzi
   'RANDOMIZE_STOCKS': (state) => {}
 };
 
@@ -15,14 +22,15 @@ const actions = {
   buyStock: (context, payload) => {
     // context.commit('buyStock', payload) mutacija 'buyStock' ne postoji u ovom modulu vec u portfolaio modulu
   },
-  setStocks: (context,payload) => {
+  //akcija ispod je napisana u ES6 a mozem i u ES5 pogledaj prvi getter
+  [types.SET_STOCKS]: (context,payload) => {
     console.log(payload);
     context.commit('SET_STOCKS', payload)
   }
 };
 
 const getters = {
-  stocks(state){
+  [types.RETURN_STOCKS](state){
     console.log(state.stocks)
     return state.stocks.slice();
   }
