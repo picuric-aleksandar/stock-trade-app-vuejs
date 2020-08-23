@@ -34,7 +34,7 @@ const actions = {
 };
 
 const getters = {
-  [types.RETURN_STOCKS](state){
+  stocks(state){
     console.log(state.stocks)
     return state.stocks.slice();
   }

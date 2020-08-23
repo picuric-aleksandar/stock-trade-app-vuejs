@@ -8,35 +8,33 @@ const state = {
 const mutations = {
   'SET_PURCHASED_STOCKS': (state,payload) => {
     //provera da li vec imamo kupljenu ovu deonicu
-    const record = state.purchasedStocks.find(
-      (element) => {
-        return element.id = payload.stockId //find vraca true or false - true ako nadje el u nizu
-      }
-    );
+    const record = state.purchasedStocks.find(element => {return element.id == payload.stockId}); //find vraca true or false - true ako nadje el u nizu
+    
+    console.log(record);
     if(record){
-      state.purchasedStocks[payload.stockId-1].quantity += payload.quantity;
+      record.quantity += payload.stockQuantity;
     }else {
       state.purchasedStocks.push({
         id: payload.stockId,
-        quantity: payload.quantity
+        quantity: payload.stockQuantity
       })
     }
-    state.funds -= (payload.quantity * payload.stockId)
+    state.funds -= (payload.stockQuantity * payload.stockId)
     //state.purchasedStocks = payload;
-     console.log(payload);
+     console.log(state.purchasedStocks);
   },
   'SELL_STOCK': (state,payload) => {
     const record = state.purchasedStocks.find(
       (element) => {
-        return element.id = payload.stockId //find vraca true or false - true ako nadje el u nizu
+        return element.id == payload.stockId //find vraca true or false - true ako nadje el u nizu
       }
     );
-    if(record.quantity > payload.quantity){
-      record.quantity -= payload.quantity
+    if(record.quantity > payload.stockQuantity){
+      record.quantity -= payload.stockQuantity
     }else {
       state.purchasedStocks.splice(state.purchasedStocks.indexOf(record), 1)
     }
-    state.funds += (payload.quantity * payload.stockId)
+    state.funds += (payload.stockQuantity * payload.stockId)
   }
 };
 const actions = {
@@ -50,7 +48,7 @@ const getters = {
     //i getterima iz stockModule-a
     return state.purchasedStocks.map(
       (currentStock) => {
-        const record = getters.types.RETURN_STOCKS.find(element => element.id == currentStock.id);
+        const record = getters.stocks.find(element => element.id == currentStock.id);
         return {
           id: currentStock.id,
           quantity: currentStock.quantity,
