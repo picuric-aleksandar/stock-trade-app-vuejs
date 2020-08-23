@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import * as types from '../../store/types';
+import {mapActions} from 'vuex';
 export default {
   props: ['stock'],
   data(){
@@ -41,6 +43,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      buy: types.BUY_STOCKS
+    }),
     buyStock(){
       if(this.quantity <= 0){
         //umesto alerta,jednostavno cemo disable-ovati dugme
@@ -53,6 +58,7 @@ export default {
         stockQuantity: this.quantity
       }
       console.log(stockOrder);
+      this.buy(stockOrder);
       this.quantity = 0;
     }
   }

@@ -19,8 +19,12 @@ const mutations = {
 };
 
 const actions = {
-  buyStock: (context, payload) => {
+  [types.BUY_STOCKS]: (context, payload) => {
     // context.commit('buyStock', payload) mutacija 'buyStock' ne postoji u ovom modulu vec u portfolaio modulu
+    console.log(payload);
+    context.commit('SET_PURCHASED_STOCKS', payload)
+    //kako se ova dva modula na kraju spajaju u nasem store-u ovde slobodno mozemo pozvati
+    //mutaciju SET_PURCHASED_STOCKS iz portfolio modula
   },
   //akcija ispod je napisana u ES6 a mozem i u ES5 pogledaj prvi getter
   [types.SET_STOCKS]: (context,payload) => {
