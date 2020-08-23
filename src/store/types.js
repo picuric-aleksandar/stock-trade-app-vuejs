@@ -8,7 +8,7 @@
  export const SET_STOCKS = 'stocks/SET_STOCKS';
  export const BUY_STOCKS = 'stocks/BUY_STOCKS';
  // stock getter za vracanje stocks state-a
- export const RETURN_STOCKS = 'stocks/RETURN_STOCKS';
+ //export const RETURN_STOCKS = 'stocks/RETURN_STOCKS';
  /*********************************************** */
 
 

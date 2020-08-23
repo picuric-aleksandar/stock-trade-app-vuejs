@@ -31,7 +31,7 @@ import {mapGetters} from 'vuex';
     computed: {
       ...mapGetters({
          // na ovaj nacin automatski kreiramo computed prop pod nazivom stocks i preko getter-a vracamo vrednost iz store-a (odnosno StockModule-a)
-         stocks: types.RETURN_STOCKS
+         stocks: 'stocks'
       })
     },
     components: {

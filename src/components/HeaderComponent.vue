@@ -21,7 +21,7 @@
         <router-link :to="{name: 'Stocks', query: {view: 'stocks'}}" tag="li" active-class="active"><a>Stocks</a></router-link>
       </ul>
       <span class="navbar-text navbar-right">
-        Funds: 0
+        <strong>Funds: {{funds}}$</strong> 
       </span>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item"><a href="#">End Day</a></li>
@@ -46,3 +46,15 @@
 </nav>
   
 </template>
+
+<script>
+import * as types from '../store/types'
+import {mapGetters} from 'vuex';
+  export default {
+    computed: {
+      ...mapGetters({
+        funds: types.RETURN_FUNDS
+      })
+    }
+  }
+</script>
