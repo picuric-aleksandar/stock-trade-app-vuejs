@@ -1,9 +1,38 @@
 <template>
   <div class="col-sm-6 col-md-4">
-    <div class="panel panel-success">
+    <div 
+      v-if="$route.query.view == 'stocks'"
+      class="panel panel-success">
       <div class="panel-heading">
           <h3 class="panel-title">{{stock.name}}
             <small>(Price: {{stock.price}})</small>
+          </h3>
+      </div>
+      <div class="panel-body">
+        <div class="pull-left">
+          <input 
+            type="number" 
+            placeholder="Quantity" 
+            class="form-control"
+            v-model="quantity">
+        </div>
+        <div class="pull-right">
+          <div 
+            class="btn btn-success"
+            @click="buyStock"
+            :disabled = "quantity <= 0 || !Number.isInteger(Number(quantity))"> <!--ako je tip inputa number dovoljno je !Number.isInteger(quantity)-->
+            Buy
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="$route.query.view == 'portfolio'"
+      class="panel panel-info">
+      <div class="panel-heading">
+          <h3 class="panel-title">{{stock.name}}
+            <small>(Price: {{stock.price}})</small>
+            <small>Quantity: </small>
           </h3>
       </div>
       <div class="panel-body">
