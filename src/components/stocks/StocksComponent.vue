@@ -58,4 +58,7 @@ import {mapGetters} from 'vuex';
         )
     }
   }
+  /**Celokupnu logiku kacenja na firebase i setovanja nasih stocks-a mozemo prebaciti i u App.vue i da 
+   * ovde samo preko getter-a namapiramo nase stocks
+   */
 </script>
